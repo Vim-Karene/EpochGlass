@@ -36,7 +36,7 @@ function Hyperlinks:OnEnable()
   -- Custom hyperlink for [See what's new]
   _G.hooksecurefunc("SetItemRef", function(link)
     local linkType, addon, param1 = strsplit(":", link)
-    if linkType == "garrmission" and addon == "Glass" then
+    if linkType == "garrmission" and addon == "EpochGlass" then
       if param1 == "opennews" then
         Core:Dispatch(OpenNews())
       end

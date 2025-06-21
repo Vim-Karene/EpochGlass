@@ -23,7 +23,7 @@ local FLAGS = { [""] = "None", ["OUTLINE"] = "Outline", ["OUTLINE, MONOCHROME"] 
 
 function C:OnEnable()
   local options = {
-      name = "Glass",
+      name = "EpochGlass",
       handler = C,
       type = "group",
       args = {
@@ -54,8 +54,8 @@ function C:OnEnable()
                   order = 2.2,
                 },
                 slashCmd = {
-                  name = "|c00DFBA69/glass|r  |cff808080...............|r  Open config window\n"..
-                         "|c00DFBA69/glass lock|r  |cff808080.......|r  Unlock Glass frame\n",
+                  name = "|c00DFBA69/epochglass|r  |cff808080...............|r  Open config window\n"..
+                         "|c00DFBA69/epochglass lock|r  |cff808080.......|r  Unlock EpochGlass frame\n",
                   type = "description",
                   width = "double",
                   order = 2.3,
@@ -78,7 +78,7 @@ function C:OnEnable()
               args = {
                 font = {
                   name = "Font",
-                  desc = "Font to use throughout Glass",
+                  desc = "Font to use throughout EpochGlass",
                   type = "select",
                   order = 3.1,
                   dialogControl = "LSM30_Font",
@@ -538,10 +538,10 @@ function C:OnEnable()
       }
   }
 
-  AceConfig:RegisterOptionsTable("Glass", options)
-  AceConfigDialog:SetDefaultSize("Glass", 780, 500)
+  AceConfig:RegisterOptionsTable("EpochGlass", options)
+  AceConfigDialog:SetDefaultSize("EpochGlass", 780, 500)
 
-  self:RegisterChatCommand("glass", "OnSlashCommand")
+  self:RegisterChatCommand("epochglass", "OnSlashCommand")
 
   Core.db.RegisterCallback(self, "OnProfileChanged", "RefreshConfig")
   Core.db.RegisterCallback(self, "OnProfileCopied", "RefreshConfig")
@@ -556,7 +556,7 @@ function C:OnSlashCommand(input)
   if input == "lock" then
     Core:Dispatch(UnlockMover())
   else
-    AceConfigDialog:Open("Glass")
+    AceConfigDialog:Open("EpochGlass")
   end
 end
 

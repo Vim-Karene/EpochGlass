@@ -23,9 +23,9 @@ Utils.print = function (str, t)
 end
 
 ---
--- Prints Glass' notification messages
+-- Prints EpochGlass' notification messages
 Utils.notify = function (message)
-  print("|c00DFBA69Glass|r: ", message)
+  print("|c00DFBA69EpochGlass|r: ", message)
 end
 
 ---

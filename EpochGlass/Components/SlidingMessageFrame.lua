@@ -197,7 +197,7 @@ function SlidingMessageFrameMixin:Init(chatFrame)
 
   chatFrame:Hide()
 
-  -- Load any messages already in the chat frame to Glass
+  -- Load any messages already in the chat frame to EpochGlass
   if chatFrame == DEFAULT_CHAT_FRAME then
     for i = 1, chatFrame:GetNumMessages() do
         local text, r, g, b = chatFrame:GetMessageInfo(i);

@@ -80,7 +80,7 @@ Core.defaults = {
 function Core:OnInitialize()
   self.listeners = {}
 
-  self.db = self.Libs.AceDB:New("GlassDB", self.defaults, true)
+  self.db = self.Libs.AceDB:New("EpochGlassDB", self.defaults, true)
   self.printBuffer = {}
 end
 

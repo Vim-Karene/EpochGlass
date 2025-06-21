@@ -18,7 +18,7 @@ function NewMessageAlertFrameMixin:Init()
 
     -- New messages text
     if self.text == nil then
-      self.text = self:CreateFontString(nil, "ARTWORK", "GlassMessageFont")
+      self.text = self:CreateFontString(nil, "ARTWORK", "EpochGlassMessageFont")
     end
     self.text:SetTextColor(Colors.apache.r, Colors.apache.g, Colors.apache.b)
     self.text:SetPoint("BOTTOMLEFT", 30, 10)
