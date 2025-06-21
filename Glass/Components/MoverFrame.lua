@@ -25,7 +25,8 @@ function MoverFrameMixin:Init()
   self:SetHeight(Core.db.profile.frameHeight + editBoxMargin)
 
   self.bg = self:CreateTexture(nil, "BACKGROUND")
-  self.bg:SetColorTexture(0, 1, 0, 0.5)
+  -- SetColorTexture not available on 3.3.5
+  self.bg:SetTexture(0, 1, 0, 0.5)
   self.bg:SetAllPoints()
 
   self:Hide()

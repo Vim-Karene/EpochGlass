@@ -23,7 +23,8 @@ function MainContainerFrameMixin:Init()
 
   --[===[@debug@
   self.bg = self:CreateTexture(nil, "BACKGROUND")
-  self.bg:SetColorTexture(1, 0, 0, 0)
+  -- SetColorTexture not present in 3.3.5
+  self.bg:SetTexture(1, 0, 0, 0)
   self.bg:SetAllPoints()
   --@end-debug@]===]
 

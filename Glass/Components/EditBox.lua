@@ -47,7 +47,8 @@ function EditBoxMixin:Init(parent)
   self.header:SetPoint("LEFT", 8, 0)
 
   local bg = self:CreateTexture(nil, "BACKGROUND")
-  bg:SetColorTexture(
+  -- SetColorTexture is unavailable in 3.3.5
+  bg:SetTexture(
     Colors.codGray.r, Colors.codGray.g, Colors.codGray.b, Core.db.profile.editBoxBackgroundOpacity
   )
   bg:SetAllPoints()
@@ -115,7 +116,7 @@ function EditBoxMixin:Init(parent)
     end
 
     if key == "editBoxBackgroundOpacity" then
-      bg:SetColorTexture(
+      bg:SetTexture(
         Colors.codGray.r, Colors.codGray.g, Colors.codGray.b, Core.db.profile.editBoxBackgroundOpacity
       )
     end

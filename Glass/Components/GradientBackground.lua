@@ -10,7 +10,8 @@ function GradientBackgroundMixin:SetGradientBackground(leftWidth, rightWidth, co
     self.leftBg = self:CreateTexture(nil, "BACKGROUND")
     self.leftBg:SetPoint("TOPLEFT")
     self.leftBg:SetPoint("BOTTOMLEFT")
-    self.leftBg:SetColorTexture(1, 1, 1, 1)
+    -- SetColorTexture doesn't exist in 3.3.5
+    self.leftBg:SetTexture(1, 1, 1, 1)
   end
   self.leftBg:SetWidth(leftWidth)
   self.leftBg:SetGradientAlpha(
@@ -23,7 +24,7 @@ function GradientBackgroundMixin:SetGradientBackground(leftWidth, rightWidth, co
     self.rightBg = self:CreateTexture(nil, "BACKGROUND")
     self.rightBg:SetPoint("TOPRIGHT")
     self.rightBg:SetPoint("BOTTOMRIGHT")
-    self.rightBg:SetColorTexture(1, 1, 1, 1)
+    self.rightBg:SetTexture(1, 1, 1, 1)
   end
   self.rightBg:SetWidth(rightWidth)
   self.rightBg:SetGradientAlpha(
@@ -37,7 +38,7 @@ function GradientBackgroundMixin:SetGradientBackground(leftWidth, rightWidth, co
     self.centerBg:SetPoint("TOPLEFT", self.leftBg, "TOPRIGHT")
     self.centerBg:SetPoint("BOTTOMRIGHT", self.rightBg, "BOTTOMLEFT")
   end
-  self.centerBg:SetColorTexture(color.r, color.g, color.b, opacity)
+  self.centerBg:SetTexture(color.r, color.g, color.b, opacity)
 end
 
 Core.Components.GradientBackgroundMixin = GradientBackgroundMixin

@@ -169,7 +169,8 @@ function SlidingMessageFrameMixin:Init(chatFrame)
     self.slider.bg = self.slider:CreateTexture(nil, "BACKGROUND")
   end
   self.slider.bg:SetAllPoints()
-  self.slider.bg:SetColorTexture(0, 0, 1, 0)
+  -- SetColorTexture not available in 3.3.5
+  self.slider.bg:SetTexture(0, 0, 1, 0)
 
   -- Pool for the message frames
   if self.messageFramePool == nil then
