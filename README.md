@@ -2,6 +2,14 @@
 
 #### An immersive and minimalistic chat UI for World of Warcraft
 
+### About this version
+
+This repository contains a port of the [Glass](https://github.com/mixxorz/Glass)
+addon adapted for World of Warcraft **3.3.5a**. It preserves the features of the
+original project while ensuring compatibility with the Wrath of the Lich King
+client. All credit for the addon goes to the original author, mixxorz. This
+edition is maintained by **Vim**.
+
 [![Demo](https://thumbs.gfycat.com/SkinnyPopularIsabellineshrike-size_restricted.gif)](https://gfycat.com/skinnypopularisabellineshrike)
 
 (Click for slightly higher resolution)
@@ -73,8 +81,13 @@ Check the [Issue tracker](https://github.com/mixxorz/Glass/issues) on GitHub
 to see if someone else has already reported your issue. If not, leave a comment
 on [CurseForge](https://www.curseforge.com/wow/addons/glass).
 
+This repository simply packages those files with minor adjustments for the
+Wrath of the Lich King client. For the latest retail edition see the original
+[Glass GitHub page](https://github.com/mixxorz/Glass).
+
 ## License
 
-MIT License
+This port continues to be distributed under the terms of the original
+MIT License.
 
 Copyright (c) 2020 Mitchel Cabuloy
