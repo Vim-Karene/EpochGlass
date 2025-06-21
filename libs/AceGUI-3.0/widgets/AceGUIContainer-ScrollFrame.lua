@@ -185,9 +185,10 @@ local function Constructor()
 	-- set the script as the last step, so it doesn't fire yet
 	scrollbar:SetScript("OnValueChanged", ScrollBar_OnScrollValueChanged)
 
-	local scrollbg = scrollbar:CreateTexture(nil, "BACKGROUND")
-	scrollbg:SetAllPoints(scrollbar)
-	scrollbg:SetColorTexture(0, 0, 0, 0.4)
+        local scrollbg = scrollbar:CreateTexture(nil, "BACKGROUND")
+        scrollbg:SetAllPoints(scrollbar)
+        -- SetColorTexture not in 3.3.5
+        scrollbg:SetTexture(0, 0, 0, 0.4)
 
 	--Container Support
 	local content = CreateFrame("Frame", nil, scrollframe)

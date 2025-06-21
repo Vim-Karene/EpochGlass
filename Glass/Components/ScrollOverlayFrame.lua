@@ -23,18 +23,8 @@ function ScrollOverlayFrame:Init()
     self:SetFadeInDuration(0.3)
     self:SetFadeOutDuration(0.15)
 
-    if self.mask == nil then
-      self.mask = self:CreateMaskTexture()
-    end
-    self.mask:SetTexture("Interface\\Addons\\Glass\\Assets\\overlayMask", "CLAMP", "CLAMPTOBLACKADDITIVE")
-    self.mask:SetSize(16, 64)
-    self.mask:SetPoint("CENTER", 0, -32)
-
+    -- Mask textures were introduced after 3.3.5. Use a simple texture instead.
     self:SetGradientBackground(15, 15, Colors.codGray, overlayOpacity)
-
-    self.leftBg:AddMaskTexture(self.mask)
-    self.centerBg:AddMaskTexture(self.mask)
-    self.rightBg:AddMaskTexture(self.mask)
 
     -- Down arrow icon
     if self.icon == nil then
