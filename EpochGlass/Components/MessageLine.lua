@@ -25,7 +25,7 @@ function MessageLineMixin:Init()
   self:SetGradientBackground(50, rightBgWidth, Colors.codGray, Core.db.profile.chatBackgroundOpacity)
 
   if self.text == nil then
-    self.text = self:CreateFontString(nil, "ARTWORK", "GlassMessageFont")
+    self.text = self:CreateFontString(nil, "ARTWORK", "EpochGlassMessageFont")
   end
   self.text:SetPoint("LEFT", Constants.TEXT_XPADDING, 0)
   self.text:SetWidth(Core.db.profile.frameWidth - Constants.TEXT_XPADDING * 2)

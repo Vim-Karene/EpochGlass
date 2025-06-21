@@ -51,7 +51,7 @@ function ChatTabMixin:Init(slidingMessageFrame)
   end
 
   self:SetHeight(Constants.DOCK_HEIGHT)
-  self:SetNormalFontObject("GlassChatDockFont")
+  self:SetNormalFontObject("EpochGlassChatDockFont")
   self.Text:ClearAllPoints()
   self.Text:SetPoint("LEFT", Constants.TEXT_XPADDING, 0)
   self:SetWidth(self.Text:GetStringWidth() + Constants.TEXT_XPADDING * 2)

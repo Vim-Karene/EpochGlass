@@ -34,14 +34,14 @@ function UIManager:OnInitialize()
 end
 
 function UIManager:OnEnable()
-  self.tickerFrame = CreateFrame("Frame", "GlassUpdaterFrame", UIParent)
+  self.tickerFrame = CreateFrame("Frame", "EpochGlassUpdaterFrame", UIParent)
 
   -- Mover
-  self.moverFrame = CreateMoverFrame("GlassMoverFrame", UIParent)
-  self.moverDialog = CreateMoverDialog("GlassMoverDialog", UIParent)
+  self.moverFrame = CreateMoverFrame("EpochGlassMoverFrame", UIParent)
+  self.moverDialog = CreateMoverDialog("EpochGlassMoverDialog", UIParent)
 
   -- Main Container
-  self.container = CreateMainContainerFrame("GlassFrame", UIParent)
+  self.container = CreateMainContainerFrame("EpochGlassFrame", UIParent)
   self.container:SetPoint("TOPLEFT", self.moverFrame)
 
   -- Chat dock
@@ -80,7 +80,7 @@ function UIManager:OnEnable()
   -- New version alert
   --@non-debug@
   if Core.db.global.version == nil or Utils.versionGreaterThan(Core.Version, Core.db.global.version) then
-    Utils.notify('Glass has just been updated. |cFFFFFF00|Hgarrmission:Glass:opennews|h[See what’s new]|h|r')
+    Utils.notify('EpochGlass has just been updated. |cFFFFFF00|Hgarrmission:EpochGlass:opennews|h[See what’s new]|h|r')
     Core.db.global.version = Core.Version
   end
   --@end-non-debug@--

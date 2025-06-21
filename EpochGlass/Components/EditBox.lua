@@ -41,9 +41,9 @@ function EditBoxMixin:Init(parent)
     self:SetPoint("BOTTOMLEFT", parent, "TOPLEFT", 8, Core.db.profile.editBoxAnchor.yOfs)
   end
 
-  self:SetFontObject("GlassEditBoxFont")
+  self:SetFontObject("EpochGlassEditBoxFont")
   self:SetWidth(Core.db.profile.frameWidth - 8 * 2)
-  self.header:SetFontObject("GlassEditBoxFont")
+  self.header:SetFontObject("EpochGlassEditBoxFont")
   self.header:SetPoint("LEFT", 8, 0)
 
   local bg = self:CreateTexture(nil, "BACKGROUND")

@@ -30,7 +30,7 @@ function ScrollOverlayFrame:Init()
     if self.icon == nil then
       self.icon = self:CreateTexture(nil, "ARTWORK")
     end
-    self.icon:SetTexture("Interface\\Addons\\Glass\\Glass\\Assets\\snapToBottomIcon")
+    self.icon:SetTexture("Interface\\Addons\\EpochGlass\\EpochGlass\\Assets\\snapToBottomIcon")
     self.icon:SetSize(16, 16)
     self.icon:SetPoint("BOTTOMLEFT", 15, 5)
 
