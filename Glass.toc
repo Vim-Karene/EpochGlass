@@ -1,4 +1,4 @@
-## Interface: 90001
+## Interface: 30300
 ## Plain Title: Glass
 ## Author: mixxorz
 ## Version: 1.8.0
@@ -29,6 +29,7 @@ libs\LibEasing\LibEasing.lua
 # Glass
 Glass\init.lua
 Glass\constants.lua
+Glass\compat.lua
 Glass\utils.lua
 
 # Components
