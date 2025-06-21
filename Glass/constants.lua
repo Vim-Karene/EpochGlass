@@ -3,15 +3,25 @@ local _, Constants = unpack(select(2, ...))
 -- luacheck: push ignore 113
 local WOW_PROJECT_CLASSIC = WOW_PROJECT_CLASSIC
 local WOW_PROJECT_ID = WOW_PROJECT_ID
+local WOW_PROJECT_WRATH_CLASSIC = WOW_PROJECT_WRATH_CLASSIC
+local GetBuildInfo = GetBuildInfo
 -- luacheck: pop
 
 -- Constants
 Constants.DOCK_HEIGHT = 20
 Constants.TEXT_XPADDING = 15
 
+-- Determine environment for compatibility
 Constants.ENV = "retail"
 
-if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
+if WOW_PROJECT_ID == nil then
+  local _, _, _, tocVersion = GetBuildInfo()
+  if tocVersion >= 30000 and tocVersion < 40000 then
+    Constants.ENV = "wrath"
+  end
+elseif WOW_PROJECT_WRATH_CLASSIC and WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC then
+  Constants.ENV = "wrathclassic"
+elseif WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
   Constants.ENV = "classic"
 end
 
