@@ -673,9 +673,10 @@ local function Constructor()
 	scrollbar:SetWidth(16)
 	scrollbar:SetScript("OnValueChanged", OnScrollValueChanged)
 
-	local scrollbg = scrollbar:CreateTexture(nil, "BACKGROUND")
-	scrollbg:SetAllPoints(scrollbar)
-	scrollbg:SetColorTexture(0,0,0,0.4)
+        local scrollbg = scrollbar:CreateTexture(nil, "BACKGROUND")
+        scrollbg:SetAllPoints(scrollbar)
+        -- SetColorTexture not in 3.3.5
+        scrollbg:SetTexture(0,0,0,0.4)
 
 	local border = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate" or nil)
 	border:SetPoint("TOPLEFT", treeframe, "TOPRIGHT")

@@ -12,7 +12,6 @@ local BackdropTemplateMixin = BackdropTemplateMixin
 local CreateFrame = CreateFrame
 local Mixin = Mixin
 local PlaySound = PlaySound
-local SOUNDKIT = SOUNDKIT
 -- luacheck: pop
 
 function MoverDialogMixin:Init()
@@ -34,8 +33,9 @@ function MoverDialogMixin:Init()
   self:SetPoint("TOP", 0, -50)
   self:Hide()
 
-  self:SetScript("OnShow", function() PlaySound(SOUNDKIT.IG_MAINMENU_OPTION) end)
-  self:SetScript("OnHide", function() PlaySound(SOUNDKIT.GS_TITLE_OPTION_EXIT) end)
+  -- SOUNDKIT constants aren't available in 3.3.5
+  self:SetScript("OnShow", function() PlaySound(852) end) -- IG_MAINMENU_OPTION
+  self:SetScript("OnHide", function() PlaySound(799) end) -- GS_TITLE_OPTION_EXIT
 
   self.header = self:CreateTexture(nil, "ARTWORK")
   self.header:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Header")
