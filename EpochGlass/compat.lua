@@ -13,14 +13,28 @@ if not Mixin then
 end
 
 if not string.trim then
-  function string.trim(s)
-    return s:match('^%s*(.-)%s*$')
+  if _G.strtrim then
+    string.trim = _G.strtrim
+  else
+    function string.trim(s)
+      return s:match('^%s*(.-)%s*$')
+    end
   end
 end
 
 if not string.split then
-  function string.split(delim, str, num)
-    return strsplit(delim, str, num)
+  if _G.strsplit then
+    string.split = _G.strsplit
+  else
+    function string.split(delim, str, num)
+      local results = {}
+      local pattern = string.format("([^%s]+)", delim)
+      for match in string.gmatch(str, pattern) do
+        table.insert(results, match)
+        if num and #results >= num then break end
+      end
+      return unpack(results)
+    end
   end
 end
 
@@ -94,18 +108,6 @@ if not CreateObjectPool then
     for i = #self.activeObjects, 1, -1 do
       self:Release(self.activeObjects[i])
     end
-  end
-
-  function ObjectPoolMixin:EnumerateActive()
-    local i = 0
-    return function()
-      i = i + 1
-      return self.activeObjects[i]
-    end
-  end
-
-  function ObjectPoolMixin:GetNumActive()
-    return #self.activeObjects
   end
 
   function CreateObjectPool(creationFunc, resetterFunc)
