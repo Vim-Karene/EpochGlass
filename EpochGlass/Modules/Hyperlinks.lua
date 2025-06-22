@@ -46,7 +46,7 @@ function Hyperlinks:OnEnable()
   end)
 
   Core:Subscribe(HYPERLINK_ENTER, function (payload)
-    local link, text = unpack(payload)
+    local link = payload[1]
     local t = string.match(link, "^(.-):")
 
     if linkTypes[t] then
