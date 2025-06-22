@@ -38,6 +38,40 @@ if not string.split then
   end
 end
 
+if not strsplit then
+  if string.split then
+    strsplit = string.split
+  else
+    function strsplit(delim, str, num)
+      local results = {}
+      local pattern = string.format("([^%s]+)", delim)
+      for match in string.gmatch(str, pattern) do
+        table.insert(results, match)
+        if num and #results >= num then break end
+      end
+      return unpack(results)
+    end
+  end
+end
+
+if not strjoin then
+  function strjoin(delim, ...)
+    return table.concat({...}, delim)
+  end
+end
+
+if not table.wipe then
+  if wipe then
+    table.wipe = wipe
+  else
+    function table.wipe(tbl)
+      for k in pairs(tbl) do
+        tbl[k] = nil
+      end
+    end
+  end
+end
+
 if not C_Timer then
   C_Timer = {}
 end
