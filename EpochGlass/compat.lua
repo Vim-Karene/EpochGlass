@@ -43,3 +43,50 @@ if not C_Timer.NewTimer then
     }
   end
 end
+
+-- Polyfill for CreateObjectPool (not present in 3.3.5a)
+if not CreateObjectPool then
+  local ObjectPoolMixin = {}
+  ObjectPoolMixin.__index = ObjectPoolMixin
+
+  function ObjectPoolMixin:Acquire()
+    local object
+    if #self.inactiveObjects > 0 then
+      object = table.remove(self.inactiveObjects)
+    else
+      object = self.creationFunc()
+    end
+    table.insert(self.activeObjects, object)
+    return object
+  end
+
+  function ObjectPoolMixin:Release(object)
+    for i, v in ipairs(self.activeObjects) do
+      if v == object then
+        table.remove(self.activeObjects, i)
+        break
+      end
+    end
+
+    if self.resetterFunc then
+      self.resetterFunc(self, object)
+    end
+    table.insert(self.inactiveObjects, object)
+  end
+
+  function ObjectPoolMixin:ReleaseAll()
+    for i = #self.activeObjects, 1, -1 do
+      self:Release(self.activeObjects[i])
+    end
+  end
+
+  function CreateObjectPool(creationFunc, resetterFunc)
+    local pool = {
+      creationFunc = creationFunc,
+      resetterFunc = resetterFunc,
+      activeObjects = {},
+      inactiveObjects = {},
+    }
+    return setmetatable(pool, ObjectPoolMixin)
+  end
+end
