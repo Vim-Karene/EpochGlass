@@ -56,9 +56,11 @@ function Hyperlinks:OnEnable()
 
     if linkTypes[t] then
       if t == "battlepet" then
-        self.state.showingTooltip = BattlePetTooltip
-        GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-        BattlePetToolTip_ShowLink(text)
+        if BattlePetToolTip_ShowLink and BattlePetTooltip then
+          self.state.showingTooltip = BattlePetTooltip
+          GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
+          BattlePetToolTip_ShowLink(text)
+        end
       else
         self.state.showingTooltip = GameTooltip
         ShowUIPanel(GameTooltip)
