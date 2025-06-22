@@ -12,6 +12,18 @@ if not Mixin then
   end
 end
 
+if not string.trim then
+  function string.trim(s)
+    return s:match('^%s*(.-)%s*$')
+  end
+end
+
+if not string.split then
+  function string.split(delim, str, num)
+    return strsplit(delim, str, num)
+  end
+end
+
 if not C_Timer then
   C_Timer = {}
 end
@@ -41,5 +53,68 @@ if not C_Timer.NewTimer then
         timer.cancelled = true
       end
     }
+  end
+end
+
+-- Polyfill for CreateObjectPool (not present in 3.3.5a)
+if not CreateObjectPool then
+  local ObjectPoolMixin = {}
+  ObjectPoolMixin.__index = ObjectPoolMixin
+
+  local function getIndex(tbl, object)
+    for i, v in ipairs(tbl) do
+      if v == object then
+        return i
+      end
+    end
+    return nil
+  end
+
+  function ObjectPoolMixin:Acquire()
+    local object = table.remove(self.inactiveObjects)
+    if not object then
+      object = self.creationFunc()
+    end
+    table.insert(self.activeObjects, object)
+    return object
+  end
+
+  function ObjectPoolMixin:Release(object)
+    local index = getIndex(self.activeObjects, object)
+    if index then
+      table.remove(self.activeObjects, index)
+      if self.resetterFunc then
+        self.resetterFunc(self, object)
+      end
+      table.insert(self.inactiveObjects, object)
+    end
+  end
+
+  function ObjectPoolMixin:ReleaseAll()
+    for i = #self.activeObjects, 1, -1 do
+      self:Release(self.activeObjects[i])
+    end
+  end
+
+  function ObjectPoolMixin:EnumerateActive()
+    local i = 0
+    return function()
+      i = i + 1
+      return self.activeObjects[i]
+    end
+  end
+
+  function ObjectPoolMixin:GetNumActive()
+    return #self.activeObjects
+  end
+
+  function CreateObjectPool(creationFunc, resetterFunc)
+    local pool = {
+      creationFunc = creationFunc,
+      resetterFunc = resetterFunc,
+      activeObjects = {},
+      inactiveObjects = {},
+    }
+    return setmetatable(pool, ObjectPoolMixin)
   end
 end
